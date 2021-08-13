@@ -1,7 +1,8 @@
 import React, {useState}from 'react'
 import Error from './Error'
+import shortid from 'shortid'
 
-function Form() {
+function Form({setExpenses, expenses}) {
 
     const [descriptionExpense, setDescriptionExpense] = useState('')
     const [quantityExpense, setQuantityExpense] = useState(0)
@@ -17,6 +18,17 @@ function Form() {
         }
 
         setError(false) 
+        setDescriptionExpense('')
+        setQuantityExpense(0)
+        const gasto = {
+           descriptionExpense,
+           quantityExpense,
+           id: shortid.generate()
+        }
+         setExpenses([
+             ...expenses,
+             gasto
+         ])
 
     }
 
@@ -44,6 +56,7 @@ function Form() {
                 type="number"
                 className="u-full-width"
                 placeholder="Cantidad gasto"
+                value={quantityExpense}
                 onChange={e => setQuantityExpense(parseInt(e.target.value, 10))}
                  />
             </div>
