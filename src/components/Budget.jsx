@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import Error from './Error';
 
-function Budget({setBudget, setRemainingBudget}) {
+function Budget({setBudget, setRemainingBudget, setIsBudget}) {
 
     const [quantity, setQuantity] = useState(0);
     const [error, setError] = useState(false);
@@ -21,6 +21,7 @@ function Budget({setBudget, setRemainingBudget}) {
         setError(false)
         setBudget(quantity)
         setRemainingBudget(quantity)
+        setIsBudget(false)
 
 
     }
