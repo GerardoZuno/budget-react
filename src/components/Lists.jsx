@@ -1,5 +1,6 @@
 import React from 'react'
 import Expense from './Expense'
+import PropTypes from 'prop-types'
 
 function Lists({expenses}) {
     return (
@@ -12,6 +13,10 @@ function Lists({expenses}) {
             }
         </div>
     )
+}
+
+Lists.propTypes = {
+    expenses: PropTypes.array.isRequired
 }
 
 export default Lists

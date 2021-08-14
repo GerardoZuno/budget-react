@@ -1,8 +1,10 @@
 import React, {useState}from 'react'
 import Error from './Error'
 import shortid from 'shortid'
+import PropTypes from 'prop-types'
 
-function Form({setExpenses, expenses}) {
+
+function Form({setGasto, setMakeExpense}) {
 
     const [descriptionExpense, setDescriptionExpense] = useState('')
     const [quantityExpense, setQuantityExpense] = useState(0)
@@ -18,17 +20,19 @@ function Form({setExpenses, expenses}) {
         }
 
         setError(false) 
-        setDescriptionExpense('')
-        setQuantityExpense(0)
+        
+
         const gasto = {
            descriptionExpense,
            quantityExpense,
            id: shortid.generate()
         }
-         setExpenses([
-             ...expenses,
-             gasto
-         ])
+        setGasto(gasto)
+        setMakeExpense(true)
+
+        setDescriptionExpense('')
+        setQuantityExpense(0)
+        
 
     }
 
@@ -68,4 +72,8 @@ function Form({setExpenses, expenses}) {
     )
 }
 
+Form.propTypes = {
+    setGasto : PropTypes.func.isRequired,
+    setMakeExpense: PropTypes.func.isRequired
+}
 export default Form

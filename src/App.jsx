@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Budget from "./components/Budget";
 import BudgetControl from "./components/BudgetControl";
 import Form from "./components/Form";
@@ -9,7 +9,25 @@ function App() {
   const [remainingBudget, setRemainingBudget] = useState(0);
   const [isBudget, setIsBudget] = useState(true);
   const [expenses, setExpenses] = useState([])
+  const [gasto, setGasto] = useState({})
+  const [makeExpense, setMakeExpense] = useState(false)
 
+
+  useEffect(() =>{
+    if(makeExpense){
+      setExpenses([
+        ...expenses,
+        gasto
+    ])
+    } 
+    setMakeExpense(false)
+
+    const remaining = remainingBudget - gasto.quantityExpense
+    setRemainingBudget(remaining)
+    
+    
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [gasto])
 
  
 
@@ -27,7 +45,9 @@ function App() {
           ) : (
             <div className="row">
             <div className="one-half column">
-              <Form setExpenses={setExpenses} expenses={expenses}/>
+              <Form setGasto={setGasto}
+               setMakeExpense={setMakeExpense}
+               />
             </div>
             <div className="one-half column">
               <Lists expenses={expenses}/>

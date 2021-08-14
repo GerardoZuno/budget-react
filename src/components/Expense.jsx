@@ -1,4 +1,6 @@
 import React from "react";
+import PropTypes from 'prop-types'
+
 
 function Expense({expenses}) {
   return (
@@ -11,6 +13,9 @@ function Expense({expenses}) {
       </p>
     </li>
   );
+}
+Expense.propTypes = {
+  expenses: PropTypes.object.isRequired
 }
 
 export default Expense;

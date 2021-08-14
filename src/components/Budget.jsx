@@ -1,5 +1,8 @@
 import React, {useState} from 'react'
 import Error from './Error';
+import PropTypes from 'prop-types'
+
+
 
 function Budget({setBudget, setRemainingBudget, setIsBudget}) {
 
@@ -55,6 +58,14 @@ function Budget({setBudget, setRemainingBudget, setIsBudget}) {
             </form>
         </div>
     )
+}
+
+Budget.propTypes = {
+    setIsBudget: PropTypes.func.isRequired,
+    setRemainingBudget: PropTypes.func.isRequired,
+    setBudget: PropTypes.func.isRequired
+
+
 }
 
 export default Budget
